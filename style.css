@@ -1,0 +1,58 @@
+input {
+    margin: 5px 0;
+}
+
+output {
+    display: none;
+}
+
+.wrapper {
+    margin: 10px;
+    display: flex;
+    width: max-content;
+    flex-direction: column;
+}
+
+.wrapper button {
+    margin-top: 5px;
+    width: max-content;
+}
+
+.wrapper span {
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.wrapper span:nth-child(1) {
+    margin-top: 20px;
+}
+
+.wrapper span:nth-child(2) {
+    font-size: 14px;
+}
+
+.wrapper p {
+    margin: 3px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    border: 1px solid gray;
+    flex-direction: column;
+    background-color: moccasin;
+}
+
+.wrapper p button:nth-child(3) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 20px;
+}
+
+.wrapper p button:nth-child(4) {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+}
