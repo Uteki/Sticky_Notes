@@ -62,36 +62,12 @@ function addNote() {
     inputRefs().noteTitleInputRef.value = "";
 }
 
-function pushBack(indexNote, description, title){
+function pushBack(indexNote, description, title, key){
     let becomeNote = description.splice(indexNote, 1);
     let becomeNoteTitle = title.splice(indexNote, 1);
 
-    allNotes.notesTitle.push(becomeNoteTitle[0]);
-    allNotes.notes.push(becomeNote[0]);
-
-    renderNotes('content', 'notes', getNoteTemplate);
-    renderNotes('archive', 'archiv', getArcNoteTemplate);
-    renderNotes('trash_content', 'trashNotes', getTrashNoteTemplate);
-}
-
-function pushToBin(indexBinNote, description, title) {
-    let becomeTrash = description.splice(indexBinNote, 1);
-    let becomeTrashTitle = title.splice(indexBinNote, 1);
-
-    allNotes.trashNotesTitle.push(becomeTrashTitle[0]);
-    allNotes.trashNotes.push(becomeTrash[0]);
-
-    renderNotes('content', 'notes', getNoteTemplate);
-    renderNotes('archive', 'archiv', getArcNoteTemplate);
-    renderNotes('trash_content', 'trashNotes', getTrashNoteTemplate);
-}
-
-function pushToArch(indexArcNote) {
-    let becomeArc = allNotes.notes.splice(indexArcNote, 1);
-    let becomeArcTitle = allNotes.notesTitle.splice(indexArcNote, 1);
-
-    allNotes.archivTitle.push(becomeArcTitle[0]);
-    allNotes.archiv.push(becomeArc[0]);
+    allNotes[key + "Title"].push(becomeNoteTitle[0]);
+    allNotes[key].push(becomeNote[0]);
 
     renderNotes('content', 'notes', getNoteTemplate);
     renderNotes('archive', 'archiv', getArcNoteTemplate);
