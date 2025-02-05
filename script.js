@@ -9,10 +9,7 @@ let allNotes = {
 
 function init(){
     getFromLocalStorage();
-
-    renderNotes('content', 'notes', getNoteTemplate);
-    renderNotes('archive', 'archiv', getArcNoteTemplate);
-    renderNotes('trash_content', 'trashNotes', getTrashNoteTemplate);
+    renderALlNotes();
 }
 
 function renderNotes(id , key, template){
@@ -36,18 +33,6 @@ function inputRefs() {
     return {noteInputRef, noteInput, noteTitleInputRef, noteTitleInput};
 }
 
-function warning() {
-    let test = false;
-    if (inputRefs().noteInput === "" || inputRefs().noteTitleInput === "") {
-        document.getElementById("note_output").setAttribute("style", "display:block");
-        setTimeout(() => {
-            document.getElementById("note_output").setAttribute("style", "display:");
-        }, 1000);
-        test = true;
-    }
-    return test;
-}
-
 function addNote() {
     warning();
 
@@ -62,6 +47,18 @@ function addNote() {
     inputRefs().noteTitleInputRef.value = "";
 }
 
+function warning() {
+    let test = false;
+    if (inputRefs().noteInput === "" || inputRefs().noteTitleInput === "") {
+        document.getElementById("note_output").setAttribute("style", "display:block");
+        setTimeout(() => {
+            document.getElementById("note_output").setAttribute("style", "display:");
+        }, 1000);
+        test = true;
+    }
+    return test;
+}
+
 function pushBack(indexNote, description, title, key){
     let becomeNote = description.splice(indexNote, 1);
     let becomeNoteTitle = title.splice(indexNote, 1);
@@ -69,6 +66,10 @@ function pushBack(indexNote, description, title, key){
     allNotes[key + "Title"].push(becomeNoteTitle[0]);
     allNotes[key].push(becomeNote[0]);
 
+    renderALlNotes();
+}
+
+function renderALlNotes() {
     renderNotes('content', 'notes', getNoteTemplate);
     renderNotes('archive', 'archiv', getArcNoteTemplate);
     renderNotes('trash_content', 'trashNotes', getTrashNoteTemplate);
@@ -91,7 +92,6 @@ function saveToLocalStorage(){
     localStorage.setItem('trashNotesTitle', JSON.stringify(allNotes.trashNotesTitle));
     localStorage.setItem('trashNotes', JSON.stringify(allNotes.trashNotes));
 }
-
 
 function getFromLocalStorage() {
     let notesT = JSON.parse(localStorage.getItem('notesTitle'));
